@@ -61,6 +61,7 @@ public class RobotContainer {
      */
     private void configureButtonBindings() {
         driver.a().whileTrue(Intake.intakeCommand());
+        driver.b().whileTrue(Intake.outakeCommand());
 
     }
 
