@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot.RobotRunType;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LEDs;
 import frc.robot.subsystems.drive.Drivetrain;
 
 
@@ -30,6 +31,7 @@ public class RobotContainer {
     /* Subsystems */
     private Drivetrain drivetrain;
     Intake Intake = new Intake();
+    LEDs leds = new LEDs(9, 60);
 
 
 
@@ -49,6 +51,7 @@ public class RobotContainer {
             default:
                 // drivetrain = new Drivetrain(new DrivetrainIO() {});
         }
+        leds.setDefaultCommand(leds.setAllianceColor().ignoringDisable(true));
         // Configure the button bindings
         configureButtonBindings();
     }
