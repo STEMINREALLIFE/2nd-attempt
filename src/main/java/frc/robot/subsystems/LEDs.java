@@ -33,6 +33,16 @@ public class LEDs extends SubsystemBase {
         leds.setData(buffer);
     }
 
+    public Command setIntakeColor() {
+        return Commands.run(() -> {
+            Color color = Color.kGreen;
+            color = Color.kGreen;
+            System.out.println(color);
+            setColor(color);
+        }, this);
+
+    }
+
     public Command setAllianceColor() {
         return Commands.run(() -> {
             Color color = Color.kYellow;
@@ -46,4 +56,8 @@ public class LEDs extends SubsystemBase {
             setColor(color);
         }, this);
     }
+
+
+    // make leds turn green when intaking.
+    // make leds purple when sensor triggered.
 }

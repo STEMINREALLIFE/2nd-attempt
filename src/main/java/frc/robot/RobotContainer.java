@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -29,9 +28,9 @@ public class RobotContainer {
     private final SendableChooser<String> autoChooser = new SendableChooser<>();
 
     /* Subsystems */
-    private Drivetrain drivetrain;
     Intake Intake = new Intake();
     LEDs leds = new LEDs(9, 60);
+    Drivetrain drive = new Drivetrain();
 
 
 
@@ -39,19 +38,10 @@ public class RobotContainer {
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer(RobotRunType runtimeType) {
-        SmartDashboard.putData("Choose Auto: ", autoChooser);
-        autoChooser.setDefaultOption("Wait 1 Second", "wait");
-        switch (runtimeType) {
-            case kReal:
-                drivetrain = new Drivetrain();
-                break;
-            case kSimulation:
-                // drivetrain = new Drivetrain(new DrivetrainSim() {});
-                break;
-            default:
-                // drivetrain = new Drivetrain(new DrivetrainIO() {});
-        }
+
         leds.setDefaultCommand(leds.setAllianceColor().ignoringDisable(true));
+        drive.setDefaultCommand(
+            drive.drivecommand(() -> driver.getLeftY(), () -> driver.getRightY()));
         // Configure the button bindings
         configureButtonBindings();
     }
@@ -63,7 +53,7 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        driver.a().whileTrue(Intake.intakeCommand());
+        driver.a().whileTrue(Intake.intakeCommand().alongWith(leds.setIntakeColor()));
         driver.b().whileTrue(Intake.outakeCommand());
 
     }
