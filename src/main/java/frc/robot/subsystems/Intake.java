@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
@@ -15,6 +16,8 @@ public class Intake extends SubsystemBase {
     VictorSP intakeMotor2 = new VictorSP(2);
     TalonFX bird = new TalonFX(51);// bird
     CANSparkMax sparky = new CANSparkMax(57, MotorType.kBrushless);
+    StatusSignal<Double> birdStatus = bird.getRotorPosition();// status signal
+    Double birdMotorPos = birdStatus.getValue();// get status signal
 
 
 
@@ -30,6 +33,8 @@ public class Intake extends SubsystemBase {
         // so motor spins other way
         // right == motor 1
         // left == motor 2
+
+
 
     }
 
