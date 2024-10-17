@@ -55,6 +55,9 @@ public class RobotContainer {
     private void configureButtonBindings() {
         driver.a().whileTrue(Intake.intakeCommand().alongWith(leds.setIntakeColor()));
         driver.b().whileTrue(Intake.outakeCommand());
+        driver.x().whileTrue(Intake.birdy());// bird
+        driver.y().whileTrue(Intake.sparky());// bird
+
 
     }
 
