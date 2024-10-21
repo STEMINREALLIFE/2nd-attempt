@@ -19,11 +19,14 @@ public class Intake extends SubsystemBase {
     StatusSignal<Double> birdStatus = bird.getRotorPosition();// status signal
     Double birdMotorPos = birdStatus.getValue();// get status signal
 
+    // public static void main(String[] args) {
+    // System.out.printf("",birdMotorPos);
+    // }
+
 
 
     DigitalInput beambreak = new DigitalInput(9);
 
-    // I NEED TO MAKE A LEFT MOTOR????
 
 
     public Intake() {
@@ -84,6 +87,7 @@ public class Intake extends SubsystemBase {
 
 
     public Command intakeCommand() {
+
         return Commands.runEnd(() -> intake(), () -> stop(), this).until(() -> beambreak.get());
     }
 
@@ -105,7 +109,10 @@ public class Intake extends SubsystemBase {
 
     @Override
     public void periodic() {
+        birdStatus.refresh();
         SmartDashboard.putBoolean("beamBreak", beambreak.get());
+        SmartDashboard.putNumber("birdMotorPos", birdStatus.getValueAsDouble());// working
+
     }
 
 }
