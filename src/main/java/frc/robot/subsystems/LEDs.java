@@ -58,6 +58,11 @@ public class LEDs extends SubsystemBase {
         }, this);
     }
 
+    public void birdyGoRound() {
+        // Intake.returnBirdyValue(); // WORK ON THIS!!!!
+
+    }
+
 
     // make leds turn green when intaking.
     // make leds purple when sensor triggered.

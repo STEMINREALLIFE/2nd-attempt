@@ -17,13 +17,7 @@ public class Intake extends SubsystemBase {
     TalonFX bird = new TalonFX(51);// bird
     CANSparkMax sparky = new CANSparkMax(57, MotorType.kBrushless);
     StatusSignal<Double> birdStatus = bird.getRotorPosition();// status signal
-    Double birdMotorPos = birdStatus.getValue();// get status signal
-
-    // public static void main(String[] args) {
-    // System.out.printf("",birdMotorPos);
-    // }
-
-
+    // Double birdMotorPos = birdStatus.getValue();
 
     DigitalInput beambreak = new DigitalInput(9);
 
@@ -55,8 +49,6 @@ public class Intake extends SubsystemBase {
 
     public void birdGo() {
         setBirdPower(0.7);// bird
-
-
     }
 
     public void sparkGo() {
@@ -85,6 +77,11 @@ public class Intake extends SubsystemBase {
         setSparkPower(0);// spark
     }
 
+    public void bridValue() {
+        birdStatus.refresh();
+        birdStatus.getValueAsDouble(); // WORK ON THIS!!!!
+    }
+
 
     public Command intakeCommand() {
 
@@ -105,6 +102,10 @@ public class Intake extends SubsystemBase {
 
     public Command print() {
         return Commands.print("asbqeb");
+    }
+
+    public Command returnBirdyValue() {
+        return Commands.run(() -> bridValue(), this);// WORK ON THIS!!!!
     }
 
     @Override
