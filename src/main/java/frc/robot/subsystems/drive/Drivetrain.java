@@ -2,6 +2,7 @@ package frc.robot.subsystems.drive;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -38,6 +39,14 @@ public class Drivetrain extends SubsystemBase {
     public Command drivecommand(DoubleSupplier left, DoubleSupplier right) {
         return Commands.run(() -> drive(left.getAsDouble(), right.getAsDouble()), this);
 
+    }
+
+    @Override
+    public void periodic() {
+        // TODO Auto-generated method stub
+        SmartDashboard.putBoolean("Paul", true);
+        // SmartDashboard.getBoolean("Paul", true);
+        
     }
 
 }
