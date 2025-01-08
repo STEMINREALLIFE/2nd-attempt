@@ -9,9 +9,12 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot.RobotRunType;
 import frc.robot.subsystems.LEDs;
+import frc.robot.subsystems.Twins.Sparky;
+import frc.robot.subsystems.Twins.SparkyIO;
+import frc.robot.subsystems.Twins.SparkyReal;
 import frc.robot.subsystems.drive.Drivetrain;
 import frc.robot.subsystems.intake.Intake;
-import frc.robot.subsystems.intake.IntakeVictorSP;
+// import frc.robot.subsystems.intake.IntakeVictorSP;
 
 
 /**
@@ -32,6 +35,7 @@ public class RobotContainer {
     private Intake intake;
     LEDs leds = new LEDs(9, 60);
     Drivetrain drive = new Drivetrain();
+    private Sparky sparky;
 
 
 
@@ -41,10 +45,12 @@ public class RobotContainer {
     public RobotContainer(RobotRunType runtimeType) {
         switch (runtimeType) {
             case kReal:
-                intake = new Intake(new IntakeVictorSP() {});
+                sparky = new Sparky(new SparkyReal());
+                // intake = new Intake(new IntakeVictorSP() {});
                 break;
             default:
-                intake = new Intake(new IntakeIo() {});
+                sparky = new Sparky(new SparkyIO() {});
+                // intake = new Intake(new IntakeIo() {});
                 break;
         }
 
@@ -62,10 +68,9 @@ public class RobotContainer {
      * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private void configureButtonBindings() {
-        driver.a().whileTrue(Intake.IntakeCommand().alongWith(leds.setIntakeColor()));
-        driver.b().whileTrue(Intake.outakeCommand());
-        driver.x().whileTrue(Intake.birdy());// bird
-        driver.y().whileTrue(Intake.sparky());// bird
+        // driver.x().whileTrue(Intake.IntakeCommand().alongWith(leds.setIntakeColor()));
+        // driver.b().whileTrue(Intake.outakeCommand());
+        driver.y().whileTrue(sparky.sparkycmd(1));
 
 
     }

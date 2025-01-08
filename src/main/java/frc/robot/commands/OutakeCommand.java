@@ -16,12 +16,12 @@ public class OutakeCommand extends Command {
 
     @Override
     public void execute() {
-        intake.outake(); // calls Intake.java to intake the block
+        // intake.outake(); // calls Intake.java to intake the block
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.stop(); // calls Intake.java to stop the motors
+        // intake.stop(); // calls Intake.java to stop the motors
     }
 
     @Override

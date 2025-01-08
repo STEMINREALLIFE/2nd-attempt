@@ -4,19 +4,15 @@ import org.littletonrobotics.junction.AutoLog;
 
 public interface SparkyIO {
     @AutoLog
-    public static class SparkyInputs {
+    public static class sparkyIOInputs {
         public double intakeVelocityRotPerSecond;
     }
 
-    public default void setMotorVoltage(double voltage) {
+    public default void setPower(double power) {
 
     }
 
-    public default void setMotorPercentage(double percent) {
-
-    }
-
-    public default void updateInputs(SparkyInputs inputs) {
+    public default void updateInputs(sparkyIOInputs inputs) {
 
     }
 
